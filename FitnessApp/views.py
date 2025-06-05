@@ -23,9 +23,7 @@ class BookClassView(APIView):
 
         if not all([class_id, client_name, client_email]):
             return Response({"error": "Missing required fields."}, status=status.HTTP_400_BAD_REQUEST)
-
         fitness_class = get_object_or_404(FitnessClass, id=class_id)
-
         if fitness_class.available_slots <= 0:
             return Response({"error": "No slots available."}, status=status.HTTP_400_BAD_REQUEST)
 
